@@ -8,14 +8,20 @@ let win;
 
 function CreateWindow()
 {
-    win = new BrowserWindow();
-
+    win = new BrowserWindow(
+        {
+            webPreferences: {
+                nodeIntegration: true
+            }
+        }
+    );
+    
     win.loadURL(url.format({
-        pathname: path.join(__dirname,'/HTML/startup.html'),
+        pathname: "../HTML/Startup.html",
         protocol: 'file',
         slashes: true,
     }))
-    
+
     win.on('close', ()=>{
         win = null;
     })
