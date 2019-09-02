@@ -1,14 +1,21 @@
 <html>
 <head>
-    <title>Electron-Base</title>
+    <title>Welcome</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css">
-    <script type="text/javascript" src="../JS/Global.js"></script>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>Oh how i apreaciate the power and awesomeness of code! Truly! It's amazing and everyday i wake up i can't wait to learn more of it!</p>
+    <script>
+        const {remote,ipcRenderer} = require("electron");
+    </script>
+    <h1>Item Database Creation Tool</h1>
+    <p>
+        This is an cross-platform app that allows you to create, export and edit Item Databases
+         for MMORPG game projects in a friendly fashion
+        </p>
     <div>
-        <button onclick="OpenPage('OverviewPage.html')">Yeet</button>
+        <button onclick="
+            ipcRenderer.send('Window','Open',remote.getCurrentWindow().id,'Overview');
+            ">Yeet</button>
     </div>
 </body>
 </html>

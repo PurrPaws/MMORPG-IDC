@@ -7,3 +7,9 @@ h1{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #e0e0e0;
 }
+td{
+    border-bottom: 1.5px solid black;
+}
+th{
+    text-align: left;
+}
