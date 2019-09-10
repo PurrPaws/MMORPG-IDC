@@ -8,6 +8,10 @@ const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
 var mainWindow;
 var itemDatabase = []
+itemDatabase.push(new BaseItem(0,"ExampleItem","SomeDecripto",0,0));
+itemDatabase.push(new BaseItem(1,"Some Item For Lilt","Yeet",20,69));
+itemDatabase.push(new BaseItem(2,"qsdiqsjdijqs","sometimes",20,69));
+
 const menuTemplate = [
     {
         label: 'File',
@@ -39,7 +43,7 @@ const menuTemplate = [
                 click: () => {
                     if (BrowserWindow.getFocusedWindow().getURL().includes("Overview"))
                     {
-                        var win = CreateWindow(mainWindow.id,'CreateItem',"RIGHT",true, 220, 500);
+                        CreateWindow({parentID: mainWindow.id, page: 'CreateItem',width: 220, height: 500, menu: false}); //mainWindow.id,'CreateItem',"RIGHT",true, 220, 500
                     }
                 }
             },
@@ -76,17 +80,12 @@ const menuTemplate = [
 ];
 
 //functions
-function CreateWindow(parentID, page, position = "RIGHT", unique = true, width = 800, height = 500, xOffset=0, yOffset=0)
+function CreateWindow({parentID, page, position = "RIGHT", menu = false,unique = true, width = 800, height = 500, xOffset=0, yOffset=0} = {})
 {
     if (unique && BrowserWindow.getAllWindows().filter(x => x.getURL().includes(page))) 
     {
-        try {
-            BrowserWindow.getAllWindows().find(x => x.getURL().includes(page)).flashFrame(true);
-            return;
-        } catch (arg) {
-            
-        }
-        
+        var frame = BrowserWindow.getAllWindows().find(x => x.getURL().includes(page));
+        if (frame) {frame.flashFrame(true); return;}  
     }
 
     var xPos = (electron.screen.getPrimaryDisplay().bounds.width - width)/2;
@@ -172,7 +171,7 @@ function OpenWindow(windowID, page)
 
 //events
 app.on('ready', ()=>{
-    mainWindow = CreateWindow(null,"Startup");
+    mainWindow = CreateWindow({parentID: null, page: 'Startup', menu: true}); 
 });
 
 ipcMain.on("Window", (event, arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7,ar8) => {
@@ -182,7 +181,7 @@ ipcMain.on("Window", (event, arg, arg1, arg2, arg3, arg4, arg5, arg6, arg7,ar8) 
             OpenWindow(arg1,arg2)
             break;
         case "Create":
-            CreateWindow(arg1,arg2,arg3,arg4,arg5,arg6,ar7,ar8);
+            CreateWindow(arg1);
             break;
         case "":
             break;

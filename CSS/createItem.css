@@ -1,0 +1,10 @@
+.InputBlock{
+    margin-top: 15px;
+}
+label{
+    margin-right: 3px;
+}
+textarea{
+    display: block;
+    width: 190px;
+}

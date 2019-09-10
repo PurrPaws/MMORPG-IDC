@@ -2,41 +2,23 @@
 <head>
     <title>New Item</title>
     <link rel="stylesheet" type="text/css" href="../CSS/global.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/createItem.css">
     <script type="text/javascript" src="../JS/CreateItem.js"></script>
 </head>
 <body>
     <h1>New Item</h1>
     <form name="ItemCreationForm">
-        <select>
-            <option value="BaseItem">BaseItem</option>
-            <option value="Consumable">Consumable</option>
-            <option value="Weapon">Weapon</option>
-            <option value="Gear">Gear</option>
-        </select>
-        <br>
-        <br>
-        <br>
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" name="item_name">
+        <div class="InputBlock">
+            <label style="margin-right: 3px">Type:</label>
+            <select id="TypeSelect" onchange="typeSelect_OnChange()">
+                <option value="BaseItem">BaseItem</option>
+                <option value="Consumable">Consumable</option>
+                <option value="OneHand">1H-Weapon</option>
+                <option value="TwoHand">2H-Weapon</option>
+                <option value="OffHand">Off-Hand</option>
+                <option value="Equipment">Equipment</option>
+            </select>
         </div>
-        <br>
-        <div>
-            <label for="Description">Description:</label>
-            <input type="text" name="item_description">
-        </div>
-        <br>
-        <div>
-            <label for="BuyPrice">BuyPrice:</label>
-            <input type="text" name="item_buyPrice">
-        </div>
-        <br>
-        <div>
-            <label for="SellPrice">SellPrice:</label>
-            <input type="text" name="item_sellPrice">
-        </div>
-        <br>
-        <button type="submit" onclick="SubmitForm()">Add Item!</button>
-    </form>
+        <div id='FormContent'><!--POPULATED BY CODE--></div>
 </body>
 </html>
