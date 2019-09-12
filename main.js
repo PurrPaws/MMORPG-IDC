@@ -1,16 +1,17 @@
 const path = require("path");
 const url = require("url");
 const electron = require("electron");
-const {BaseItem} = require("./JS/Modules/ItemClasses");
+const {BaseItem,Consumable,Weapon} = require("./JS/Modules/ItemClasses");
 const app = electron.app;
 const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
 var mainWindow;
 var itemDatabase = []
-itemDatabase.push(new BaseItem(0,"ExampleItem","SomeDecripto",0,0));
-itemDatabase.push(new BaseItem(1,"Some Item For Lilt","Yeet",20,69));
-itemDatabase.push(new BaseItem(2,"qsdiqsjdijqs","sometimes",20,69));
+itemDatabase.push(new BaseItem(0,"Example BaseItem","SomeDecripto",0.01,0.5));
+itemDatabase.push(new Consumable(1,"Example Consumable","Yeet",20,69,200,0,20));
+itemDatabase.push(new BaseItem(2,"Your mom ghey lol!","sometimes",911,420));
+itemDatabase.push(new Weapon(3,"TestWeapon","TestDecripto",42.2,10.85,{weaponDamage: 20, stamina: 2, strength: 1}))
 
 const menuTemplate = [
     {
