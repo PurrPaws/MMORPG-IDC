@@ -103,12 +103,15 @@ class Consumable extends BaseItem
         this.duration = duration;
     }
 }
+
 module.exports = 
 {
     BaseItem,
     Consumable,
     Weapon,
     Equipment,
+
+    Attributes,
 
     QualityList,
     EquipmentSlotList,
