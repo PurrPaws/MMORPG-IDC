@@ -1,0 +1,23 @@
+##########################
+##-------Checklist-------##
+##########################
+
+-- Finish Equipment && Weapon Select
+
+-- Add 'Add Stat' Button paired with an input box
+
+-- Add seperators in the CreateItem HTML and CSS files.
+
+-- Style the app using CSS.
+
+-- Finish item Creation
+
+-- Add Export to JSON || XML || (Binary)
+
+-- Finish Top menu.
+
+-- Add Import from JSON || XML || (Binary)
+
+-- Add Editing.
+
+-- Add Sorting in Overview page.

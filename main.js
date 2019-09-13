@@ -11,8 +11,6 @@ var itemDatabase = []
 itemDatabase.push(new BaseItem(0,"Example BaseItem","SomeDecripto",0.01,0.5));
 itemDatabase.push(new Consumable(1,"Example Consumable","Yeet",20,69,200,0,20));
 itemDatabase.push(new BaseItem(2,"Your mom ghey lol!","sometimes",911,420));
-itemDatabase.push(new Weapon(3,"TestWeapon","TestDecripto",42.2,10.85,{weaponDamage: 20, stamina: 2, strength: 1}))
-
 const menuTemplate = [
     {
         label: 'File',
@@ -44,7 +42,7 @@ const menuTemplate = [
                 click: () => {
                     if (BrowserWindow.getFocusedWindow().getURL().includes("Overview"))
                     {
-                        CreateWindow({parentID: mainWindow.id, page: 'CreateItem',width: 220, height: 500, menu: false}); //mainWindow.id,'CreateItem',"RIGHT",true, 220, 500
+                        CreateWindow({parentID: mainWindow.id, page: 'CreateItem',width: 320, height: 500, menu: false}); //mainWindow.id,'CreateItem',"RIGHT",true, 220, 500
                     }
                 }
             },

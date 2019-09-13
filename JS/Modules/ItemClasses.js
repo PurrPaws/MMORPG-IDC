@@ -1,12 +1,34 @@
-var QualityEnum = {
-    poor: 0,
-    common: 1,
-    uncommon: 2,
-    rare: 3,
-    epic: 4,
-    legendary: 5,
-  };
-class Attributes { //Attribute data. instantiated on each item object.
+const QualityList = [
+    {key: "poor", value: 0},
+    {key: "common", value: 1},
+    {key: "uncommon", value: 2},
+    {key: "rare", value: 3},
+    {key: "epic", value: 4},
+    {key: "legendary", value: 5},
+];
+const EquipmentSlotList = [
+    {key: "head", value: 0},
+    {key: "shoulders", value: 1},
+    {key: "chest", value: 2},
+    {key: "wrists", value: 3},
+    {key: "hands", value: 4},
+    {key: "waist", value: 5},
+    {key: "legs", value: 6},
+    {key: "feet", value: 7},
+    {key: "neck", value: 8},
+    {key: "finger1", value: 9},
+    {key: "finger2", value: 10},
+    {key: "trinket1", value: 11},
+    {key: "trinket2", value: 12},
+]
+const WeaponSlotList = [
+    {key: "mainHand", value: 0},
+    {key: "offHand", value: 1},
+    {key: "twoHand", value: 2},
+]
+class Attributes { 
+    //Attribute class -- Instantiated on each object that inherits from 
+    // Equipment
     armor = 0;
     weaponDamage = 0;
     stamina = 0;
@@ -36,7 +58,7 @@ class BaseItem
     buyPrice;
     sellPrice;
     quality;
-
+    //maxStackSize
     typeString = "BaseItem";
     constructor(ID,name,description,buyPrice,sellPrice){
         this.ID = ID;
@@ -48,21 +70,22 @@ class BaseItem
 }
 class Weapon extends BaseItem 
 {
-    stats; //gets defined in constructor
-    constructor(ID,name,description,buyPrice,sellPrice,{armor: armor = 0,weaponDamage: weaponDamage=0, stamina: stamina=0,strength: strength=0,agility: agility=0, intellect: intellect=0, haste: haste=0, criticalStrike: criticalStrike=0} = {statObject}){
+    stats = new Attributes();
+    slot;
+    constructor(ID,name,description,buyPrice,sellPrice, stats, slot){
         super(ID,name,description,buyPrice,sellPrice);
-        stats = new Attributes(statObject);
+        this.stats = stats
         this.typeString = "Weapon";
     }
 }
 class Equipment extends BaseItem 
 {
     stats = new Attributes();
-    //add stats here
-    constructor(ID,name,description,buyPrice,sellPrice,armor){
+    slot;
+    constructor(ID,name,description,buyPrice,sellPrice,stats, slot){
         super(ID,name,description,buyPrice,sellPrice)
-        this.itemString = "Equipment"
-        this.armor = armor;
+        this.stats = stats;
+        this.itemString = "Equipment";
     }   
 }
 class Consumable extends BaseItem 
@@ -80,41 +103,14 @@ class Consumable extends BaseItem
         this.duration = duration;
     }
 }
-class TwoHand extends Weapon 
-{
-    constructor(ID,name,description,buyPrice,sellPrice,damagePerSecond){
-        super(ID,name,description,buyPrice,sellPrice,damagePerSecond);
-        this.typeString = "2H-Weapon";
-
-    }
-}
-class OneHand extends Weapon 
-{
-    constructor(ID,name,description,buyPrice,sellPrice,damagePerSecond){
-        super(ID,name,description,buyPrice,sellPrice,damagePerSecond);
-        this.typeString = "1H-Weapon";
-
-    }
-}
-class OffHand extends Equipment 
-{
-    constructor(ID,name,description,buyPrice,sellPrice,armor){
-        super(ID,name,description,buyPrice,sellPrice,damagePerSecond);
-        this.typeString = "Off-Hand";
-
-    }
-}
-
 module.exports = 
 {
     BaseItem,
     Consumable,
-    OffHand,
-    OneHand,
-    TwoHand,
     Weapon,
     Equipment,
 
-
-    QualityEnum
+    QualityList,
+    EquipmentSlotList,
+    WeaponSlotList
 };
