@@ -2,7 +2,7 @@
 ##-------Checklist-------##
 ##########################
 
--- Finish Equipment && Weapon Select
+-- Finish Equipment && Weapon Select -- DONE
 
 -- Add 'Add Stat' Button paired with an input box
 

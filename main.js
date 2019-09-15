@@ -132,14 +132,10 @@ function CreateWindow({parentID, page, position = "RIGHT", menu = false,unique =
             }
         }
     );
+    win.loadFile("HTML/"+page+".html");
     win.once('ready-to-show', () => {
         win.show();
       });
-      win.loadURL(url.format({
-        pathname: "../HTML/"+ page +".html",
-        protocol: 'file',
-        slashes: true,
-    }));
     win.on('close', ()=>{
         win = null;
     });
@@ -159,11 +155,7 @@ function GetFirstIDOrNull(windowID)
 function OpenWindow(windowID, page)
 {
     var win = BrowserWindow.getAllWindows().find(x => x.id = windowID);
-    win.loadURL(url.format({
-        pathname: "../HTML/"+ page +".html",
-        protocol: 'file',
-        slashes: true,
-    }));
+    win.loadFile("HTML/"+page+".html");
 }
 
 

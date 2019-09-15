@@ -1,14 +1,21 @@
 {
-    "name": "electron-base",
-    "version": "1.0.0",
-    "main": "main.js",
-    "devDependencies": {
-        "electron": "^6.0.8"
-    },
-    "scripts": {
-        "start": "electron ."
-    },
-    "dependencies": {
-        "jquery": "^3.4.1"
-    }
+  "name": "mmorpg-idc",
+  "version": "0.0.1",
+  "main": "main.js",
+  "author": "Ruben Versavel",
+  "productName": "IDC 0.0.1 [Dev Build]",
+  "devDependencies": {
+    "electron": "^6.0.9",
+    "electron-packager": "^14.0.6"
+  },
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-packager .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . --overwrite --platform=win32 --arch=x64 --icon=assets/icons/win/icon.ico --prune=true --out=Builds",
+    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
 }
