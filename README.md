@@ -2,7 +2,7 @@
  This is an cross-platform electron app that allows you to create, export and edit Item Databases for MMORPG game projects in a friendly fashion.
 
 ## How to install
-1. Fetch/pull this project.
+1. Fetch/Fork this project.
 2. Open the project root folder with a terminal (where the main.js file is located) (GitBash/Powershell/VsCode Terminal/etc...)
 3. Run the following commands: 
     ```
