@@ -1,7 +1,7 @@
 //Imports
 const global = require("../JS/Modules/Global");
 const {ipcRenderer, remote} = require("electron");
-const {BaseItem, Attributes,EquipmentSlotList,WeaponSlotList,QualityList} = require("../JS/Modules/ItemClasses");
+const {BaseItem, Consumable, Equipment, Weapon, Attributes,EquipmentSlotList,WeaponSlotList,QualityList} = require("../JS/Modules/ItemClasses");
 window.$ = window.jQuery = require('jquery');
 
 //Global Vars
@@ -99,6 +99,9 @@ function ShiftAvailableStatList(previousValue, select)
         }
     });
 
+    //Change the Input_X name so it matches it's selection.
+    var valueCapitalized = select.val().charAt(0).toUpperCase() + select.val().slice(1);
+    select.attr("name","Input_"+valueCapitalized);
 }
 function AddStatInput()
 {
@@ -120,7 +123,7 @@ function AddStatInput()
 }
 function CreateAddStatButton()
 {
-    var returnValue = $("<button id='AddStatButton' style='display: block;' type='button' onclick='AddStatInput()' >Add Stat</button>");
+    var returnValue = $("<button id='AddStatButton' style='display: block; margin-top: 20px;' type='button' onclick='AddStatInput()' >Add Stat</button>");
     return returnValue;
 }
 function CreateBaseItemForm()
@@ -186,15 +189,80 @@ function typeSelect_OnChange()
     }
 }
 
-function SubmitForm() //todo: Vallidate
+function SubmitForm() //todo: Vallidate fields
 {
-    
-    //Checking if valid
-    //...
-    //...
-    //...
-    //...
-    global.AddItem(ipcRenderer,BaseItem,form["item_name"].value,form["item_description"].value,form["item_buyPrice"].value, form["item_sellPrice"].value);
+    var itemToAdd;
+    const form = $("form[name='ItemCreationForm']");
+    const typeSelect = $("#TypeSelect option:selected");
+    const qualitySelect = $("#QualitySelect option:selected");
+    var inputValues = form.serializeArray();
+
+    console.log(inputValues); //Production: Remove!
+
+    switch(typeSelect.val())
+    {
+        case "BaseItem":
+            itemToAdd = new BaseItem(
+                ipcRenderer.sendSync("DB_GET", "Count"),
+                inputValues.find(x => x.name == "Input_Name").value,
+                inputValues.find(x => x.name == "Input_Description").value,
+                inputValues.find(x => x.name == "Input_BuyPrice").value,
+                inputValues.find(x => x.name == "Input_SellPrice").value,
+                QualityList[qualitySelect.val()]
+                );
+            break;
+        case "Consumable":
+            itemToAdd = new Consumable(
+                ipcRenderer.sendSync("DB_GET", "Count"),
+                inputValues.find(x => x.name == "Input_Name").value,
+                inputValues.find(x => x.name == "Input_Description").value,
+                inputValues.find(x => x.name == "Input_BuyPrice").value,
+                inputValues.find(x => x.name == "Input_SellPrice").value,
+                QualityList[qualitySelect.val()],
+                inputValues.find(x => x.name == "Input_HP").value,
+                inputValues.find(x => x.name == "Input_MP").value,
+                inputValues.find(x => x.name == "Input_Duration").value,
+                );
+            break;
+        case "Equipment":
+            const equipmentSlotSelect = $("#EquipmentSlotSelect option:selected");
+            var stats = new Attributes();
+            inputValues.forEach(inputValue => {
+                propertyName = inputValue.name.replace("Input_","");
+                stats[propertyName] = inputValue.value;
+            });
+            itemToAdd = new Equipment(
+                ipcRenderer.sendSync("DB_GET", "Count"),
+                inputValues.find(x => x.name == "Input_Name").value,
+                inputValues.find(x => x.name == "Input_Description").value,
+                inputValues.find(x => x.name == "Input_BuyPrice").value,
+                inputValues.find(x => x.name == "Input_SellPrice").value,
+                QualityList[qualitySelect.val()],
+                stats,
+                EquipmentSlotList[equipmentSlotSelect.val()]
+                );
+            break;
+        case "Weapon":
+            const weaponSlotSelect = $("#WeaponSlotSelect option:selected");
+            var stats = new Attributes();
+            inputValues.forEach(inputValue => {
+                propertyName = inputValue.name.replace("Input_","");
+                stats[propertyName] = inputValue.value;
+            });
+            itemToAdd = new Weapon(
+                ipcRenderer.sendSync("DB_GET", "Count"),
+                inputValues.find(x => x.name == "Input_Name").value,
+                inputValues.find(x => x.name == "Input_Description").value,
+                inputValues.find(x => x.name == "Input_BuyPrice").value,
+                inputValues.find(x => x.name == "Input_SellPrice").value,
+                QualityList[qualitySelect.val()],
+                stats,
+                WeaponSlotList[weaponSlotSelect.val()]
+                );
+            break;
+    }
+    //Item is created -- send it over to the main script!
+    ipcRenderer.send("DB_SET", "Add", itemToAdd);
     remote.getCurrentWindow().getParentWindow().webContents.send("Item_Added");
     remote.getCurrentWindow().close();
 }

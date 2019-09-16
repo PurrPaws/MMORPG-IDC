@@ -60,21 +60,23 @@ class BaseItem
     quality;
     //maxStackSize
     typeString = "BaseItem";
-    constructor(ID,name,description,buyPrice,sellPrice){
+    constructor(ID,name,description,buyPrice,sellPrice,quality){
         this.ID = ID;
         this.name = name;
         this.description = description;
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
+        this.quality = quality;
     }
 }
 class Weapon extends BaseItem 
 {
     stats = new Attributes();
     slot;
-    constructor(ID,name,description,buyPrice,sellPrice, stats, slot){
-        super(ID,name,description,buyPrice,sellPrice);
-        this.stats = stats
+    constructor(ID,name,description,buyPrice,sellPrice,quality, stats, slot){
+        super(ID,name,description,buyPrice,sellPrice,quality);
+        this.stats = stats;
+        this.slot = slot;
         this.typeString = "Weapon";
     }
 }
@@ -82,8 +84,9 @@ class Equipment extends BaseItem
 {
     stats = new Attributes();
     slot;
-    constructor(ID,name,description,buyPrice,sellPrice,stats, slot){
-        super(ID,name,description,buyPrice,sellPrice)
+    constructor(ID,name,description,buyPrice,sellPrice,quality, stats, slot){
+        super(ID,name,description,buyPrice,sellPrice,quality)
+        this.slot = slot;
         this.stats = stats;
         this.itemString = "Equipment";
     }   
@@ -95,8 +98,8 @@ class Consumable extends BaseItem
     mp;
     duration; //in seconds
 
-    constructor(ID,name,description,buyPrice,sellPrice,hp,mp,duration){
-        super(ID,name,description,buyPrice,sellPrice)
+    constructor(ID,name,description,buyPrice,sellPrice, quality,hp,mp,duration){
+        super(ID,name,description,buyPrice,sellPrice,quality)
         this.typeString = "Consumable";
         this.hp = hp;
         this.mp = mp;

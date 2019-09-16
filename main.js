@@ -8,9 +8,6 @@ const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
 var mainWindow;
 var itemDatabase = []
-itemDatabase.push(new BaseItem(0,"Example BaseItem","SomeDecripto",0.01,0.5));
-itemDatabase.push(new Consumable(1,"Example Consumable","Yeet",20,69,200,0,20));
-itemDatabase.push(new BaseItem(2,"Your mom ghey lol!","sometimes",911,420));
 const menuTemplate = [
     {
         label: 'File',

@@ -9,6 +9,8 @@ function ListItems()
     const dataBaseCopy = ipcRenderer.sendSync("DB_GET", "All");
     const table = document.getElementById("ItemTableBody");
 
+    console.log(dataBaseCopy); //Production: Remove
+
     //Remove all previous children
     while (table.lastChild)  { table.lastChild.remove();}
 
@@ -26,6 +28,10 @@ function ListItems()
     var thType = document.createElement("th");
     thType.innerText = "Type";
     hr.appendChild(thType);
+
+    var thQuality = document.createElement("th");
+    thType.innerText = "Quality";
+    hr.appendChild(thQuality);
 
     var thBuyPrice = document.createElement("th");
     thBuyPrice.innerText = "BuyPrice";
@@ -53,6 +59,10 @@ function ListItems()
         var tdType = document.createElement("td");
         tdType.innerText = item.typeString;
         data.push(tdType);
+
+        var tdQuality = document.createElement("td");
+        tdType.innerText = item.quality.key;
+        data.push(tdQuality);
 
         var tdBuyPrice = document.createElement("td");
         tdBuyPrice.innerText = item.buyPrice;
