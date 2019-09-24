@@ -4,13 +4,13 @@
 
 -- Finish Equipment && Weapon Select -- DONE
 
--- Add 'Add Stat' Button paired with an input box
+-- Add 'Add Stat' Button paired with an input box -- DONE
 
 -- Add seperators in the CreateItem HTML and CSS files.
 
 -- Style the app using CSS.
 
--- Finish item Creation
+-- Finish item Creation -- DONE
 
 -- Add Export to JSON || XML || (Binary)
 

@@ -2,14 +2,61 @@ html{
     color: #c1c1c1;
     background: #313131;
 }
+body{
+    margin: 0;
+}
 h1{
-    font-size: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: inline-block;
+    font-size: 25px;
+    font-family: 'Gayathri';
+    font-weight: bold;
+    font-style: normal;
     color: #e0e0e0;
+    vertical-align: text-top;
+    margin: 0;
 }
 td{
     border-bottom: 1.5px solid black;
 }
 th{
     text-align: left;
+}
+p{
+    font-family: 'Titillium Web';
+    font-weight: normal;
+    font-style: normal;
+}
+.HeaderDiv{
+    background-color: #202020;
+    padding-left: 8px;
+}
+.HeaderIcon{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+.ClearFloatDiv{
+    clear: both;
+}
+.WarningDiv{
+    margin-top: 15%;
+    padding: 10;
+    background-color: #ffcf00;
+    border-radius: 13px;
+}
+.WarningIcon{
+    width: 85px;
+    height: 85px;
+    background-color: #313131;
+}
+.WarningText{
+    font-family: "Titillium Web";
+    margin-left: 10px;
+    color: #313131;
+}
+/*---------------------------------------------*/
+#Content{
+    padding: 0 8px 0 8px; 
 }
