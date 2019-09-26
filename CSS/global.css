@@ -49,12 +49,14 @@ p{
 .WarningIcon{
     width: 85px;
     height: 85px;
-    background-color: #313131;
 }
 .WarningText{
     font-family: "Titillium Web";
     margin-left: 10px;
     color: #313131;
+    border-radius: 4px;
+    background-color: #cea500;
+    padding: 10px;
 }
 /*---------------------------------------------*/
 #Content{

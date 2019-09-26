@@ -1,6 +1,13 @@
 const {ipcRenderer} = require("electron");
+window.$ = window.jQuery = require('jquery');
+
 ipcRenderer.on("Item_Added", (event,arg) => {
     ListItems();
+});
+
+$(document).ready(() => {
+    //If the document is ready then set the correct heigth on the searchbox
+    $(".SearchBox").css("margin-top",parseInt($(".HeaderDiv").css("height"), 10) /4 + "px");
 });
 
 //functions
