@@ -5,7 +5,7 @@
   "author": "Ruben Versavel",
   "productName": "IDC 0.0.1 [Dev Build]",
   "devDependencies": {
-    "electron": "^6.0.9",
+    "electron": "^9.1.0",
     "electron-packager": "^14.0.6"
   },
   "scripts": {
